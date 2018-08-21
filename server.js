@@ -8,12 +8,12 @@ let db = require('./config/db');
 const app = express();
 const port = 8000;
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
-  const db = database.db("appointmentsdb");
-  require('./app/routes')(app, database);
+  require('./app/routes')(app, database.db("appointmentsdb"));
   app.listen(process.env.PORT || port, () => {
     console.log('Listening on  ' + port);
   });

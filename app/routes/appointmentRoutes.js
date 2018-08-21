@@ -31,14 +31,16 @@ module.exports = (app, db) => {
   });
 
   app.put('/appointments/:id', (req, res) => {
-    const details = { '_id': new ObjectID(req.params.id) };
+    const body = req.body;
+    const startDate = body.startDate == null ? null : new Date(body.startDate);
+
     const appointment = {
-      startTime: req.body.startTime == null ? null : new Date(req.body.startTime),
-      endTime: req.body.endTime == null ? null : new Date(req.body.endTime),
-      customerId: req.body.customerId,
-      resourceId: req.body.resourceId,
-      serviceId: req.body.serviceId,
+      startDate: startDate,
+      customer: body.customer,
+      resource: body.resource,
+      service: body.service,
     };
+
     db.collection('appointments').updateOne(details, appointment, (err, result) => {
       if (err) {
         res.send(err);
@@ -49,13 +51,16 @@ module.exports = (app, db) => {
   });
 
   app.post('/appointments', (req, res) => {
+    const body = req.body;
+    const startDate = body.startDate == null ? null : new Date(body.startDate);
+
     const appointment = {
-      startTime: req.body.startTime == null ? null : new Date(req.body.startTime),
-      endTime: req.body.endTime == null ? null : new Date(req.body.endTime),
-      customerId: req.body.customerId,
-      resourceId: req.body.resourceId,
-      serviceId: req.body.serviceId,
+      startDate: startDate,
+      customer: body.customer,
+      resource: body.resource,
+      service: body.service,
     };
+
     db.collection('appointments').insertOne(appointment, (err, result) => {
       if (err) {
         res.send(err);

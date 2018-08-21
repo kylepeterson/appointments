@@ -1,0 +1,75 @@
+.appointments-page {
+  text-align: center;
+}
+
+.appointments-page__header {
+  background: #607d8b;
+  padding: 20px;
+  color: white;
+}
+
+.appointments-form {
+  width: 80%;
+  margin: auto;
+  padding: 1em;
+}
+
+.appointments-form__select {
+  padding-bottom: 1em;
+}
+
+.appointments-form__date-time {
+  padding-bottom: 1em;
+}
+
+.appointments-table {
+  width: 80%;
+  margin: auto;
+  padding: 1em;
+}
+
+.appointment-row {
+  margin-bottom: 1em;
+  padding: 1em;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 15px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.appointment-row__details {
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.5em;
+}
+
+.appointment-row__details span {
+  font-weight: bold;
+}
+
+.appointment-row__delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-transform: capitalize;
+  background-color: #9e1e4d;
+  color: white;
+  padding: 6px 9px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.appointments-page__button {
+  margin-top: 1em;
+  text-transform: capitalize;
+  background-color: #9e1e4d;
+  color: white;
+  padding: 6px 9px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
