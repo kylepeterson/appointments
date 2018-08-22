@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
@@ -19,51 +19,50 @@ const defaultProps = {
   startDate: null,
 };
 
-class AppointmentRow extends Component {
-  getStartDate() {
-    return this.getFormattedDate(moment(this.props.startDate));
-  }
+const AppointmentRow = ((props) => {
+  const getStartDate = () => {
+    return getFormattedDate(moment(props.startDate));
+  };
 
-  getEndDate() {
-    const endDate = moment(this.props.startDate).add(this.props.service.length, 'm');
-    return this.getFormattedDate(endDate)
-  }
+  const getEndDate = () => {
+    const endDate = moment(props.startDate).add(props.service.length, 'm');
+    return getFormattedDate(endDate)
+  };
 
-  getFormattedDate(dateMoment) {
+  const getFormattedDate = (dateMoment) => {
     return dateMoment.format("MMMM Do YYYY, h:mm a");
-  }
-  render() {
-    return (
+  };
+
+  return (
       <div className="appointment-row">
         <div className="appointment-row__details">
-          <div className="appoint-row__customer">
+          <div className="appointment-row__customer">
             <span>Customer: </span>
-            { this.props.customer && this.props.customer.label }
+            { props.customer && props.customer.label }
           </div>
-          <div className="appoint-row__resource">
+          <div className="appointment-row__resource">
             <span>Resource: </span>
-            {this.props.resource && this.props.resource.label}
+            {props.resource && props.resource.label}
           </div>
-          <div className="appoint-row__service">
+          <div className="appointment-row__service">
             <span>Service: </span>
-            {this.props.service && this.props.service.label}
+            {props.service && props.service.label}
           </div>
-          <div className="appoint-row__start-date">
+          <div className="appointment-row__start-date">
             <span>Start Date: </span>
-            {this.props.startDate && this.getStartDate()}
+            {props.startDate && getStartDate()}
           </div>
-          <div className="appoint-row__end-date">
+          <div className="appointment-row__end-date">
             <span>End Date: </span>
-            {this.props.startDate && this.props.service && this.getEndDate()}
+            {props.startDate && props.service && getEndDate()}
           </div>
         </div>
-        <div onClick={() => this.props.onDelete(this.props.id)} className="appointment-row__delete">
+        <div onClick={() => props.onDelete(props.id)} className="appointment-row__delete">
           Delete
         </div>
       </div>
-    );
-  }
-}
+  );
+});
 
 AppointmentRow.propTypes = propTypes;
 AppointmentRow.defaultProps = defaultProps;

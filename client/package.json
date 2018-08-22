@@ -4,12 +4,16 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
     "express": "^4.16.3",
+    "jest-enzyme": "^6.0.3",
     "mongodb": "^2.2.16",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4",
-    "react-select": "^2.0.0"
+    "react-select": "^2.0.0",
+    "react-test-renderer": "^16.4.2"
   },
   "scripts": {
     "start": "react-scripts start",

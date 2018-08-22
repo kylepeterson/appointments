@@ -1,12 +1,14 @@
 const ObjectID = require('mongodb').ObjectID;
 
 module.exports = (app, db) => {
+  // GET /appointments
   app.get('/appointments', (req, res) => {
     db.collection('appointments').find(req.query).toArray()
         .then(items => res.send(items))
         .catch(err => res.send(err))
   });
 
+  // GET /appointments/:id
   app.get('/appointments/:id', (req, res) => {
     const details = { '_id': new ObjectID(req.params.id) };
     db.collection('appointments').findOne(details, (err, item) => {
@@ -18,6 +20,7 @@ module.exports = (app, db) => {
     });
   });
 
+  // DELETE /appointments/:id
   app.delete('/appointments/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
@@ -30,6 +33,7 @@ module.exports = (app, db) => {
     });
   });
 
+  // PUT /appointments/:id
   app.put('/appointments/:id', (req, res) => {
     const body = req.body;
     const startDate = body.startDate == null ? null : new Date(body.startDate);
@@ -50,6 +54,7 @@ module.exports = (app, db) => {
     });
   });
 
+  // POST /appointments
   app.post('/appointments', (req, res) => {
     const body = req.body;
     const startDate = body.startDate == null ? null : new Date(body.startDate);

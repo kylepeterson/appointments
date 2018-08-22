@@ -13,7 +13,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-
+  customer: '',
+  resource: '',
+  service: '',
+  startDate: '',
 };
 
 class AppointmentsForm extends Component {
@@ -35,6 +38,7 @@ class AppointmentsForm extends Component {
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   componentDidMount() {
     this.fetchResources();
     this.fetchCustomers();

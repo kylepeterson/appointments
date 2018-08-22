@@ -1,6 +1,7 @@
 const ObjectID = require('mongodb').ObjectID;
 
 module.exports = (app, db) => {
+  // GET /services
   app.get('/services', (req, res) => {
     db.collection('services').find(req.query).toArray()
         .then(items => res.send(items))
@@ -18,18 +19,6 @@ module.exports = (app, db) => {
       }
     });
   });
-
-  // app.delete('/services/:id', (req, res) => {
-  //   const id = req.params.id;
-  //   const details = { '_id': new ObjectID(id) };
-  //   db.collection('services').removeOne(details, (err, item) => {
-  //     if (err) {
-  //       res.send(err);
-  //     } else {
-  //       res.send('service ' + id + ' deleted!');
-  //     }
-  //   });
-  // });
 
   // PUT /services/:id
   app.put('/services/:id', (req, res) => {

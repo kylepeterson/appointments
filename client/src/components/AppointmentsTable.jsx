@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AppointmentRow from './AppointmentRow';
 
@@ -11,29 +11,26 @@ const defaultProps = {
   appointments: [],
 };
 
-class AppointmentsTable extends Component {
+const AppointmentsTable = ((props) => {
+  const renderTableRows = () => {
+    return props.appointments.map((appointment) => {
+      return (
+          <AppointmentRow
+              id={appointment._id}
+              {...appointment}
+              onDelete={props.onDeleteAppointment}
+              key={appointment._id}
+          />
+      )
+    })
+  };
 
-  renderTableRows() {
-   return this.props.appointments.map((appointment) => {
-     return (
-         <AppointmentRow
-             key={appointment._id}
-             id={appointment._id}
-             {...appointment}
-             onDelete={this.props.onDeleteAppointment}
-         />
-     )
-   })
-  }
-
-  render() {
-    return (
+  return (
       <div className="appointments-table">
-        {this.renderTableRows()}
+        {renderTableRows()}
       </div>
-    );
-  }
-}
+  );
+});
 
 AppointmentsTable.propTypes = propTypes;
 AppointmentsTable.defaultProps = defaultProps;
